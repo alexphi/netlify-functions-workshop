@@ -1,0 +1,7 @@
+---
+# This empty front matter tells jekyll to process this file, using the postcss plugin
+---
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

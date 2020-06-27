@@ -1,0 +1,15 @@
+{% if site.gtag_id != "" %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gtag_id }}"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', '{{ site.gtag_id }}');
+</script>
+{% else %}
+<script>
+    console.log('No analytics tracking id found!');
+</script>
+{% endif %}
