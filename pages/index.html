@@ -3,8 +3,63 @@ layout: default
 permalink: "/"
 ---
 
-<div class="h-screen flex flex-col items-center justify-center bg-gray-800">
-    <h1 class="text-3xl text-gray-100 my-4">Hi there!</h1>
-    <p class="text-gray-100 my-2">This is a minimal Jekyll + TailwindCSS template for static sites</p>
-    <p class="text-gray-100 my-2">You can check the code and clone the repo on <a href="https://github.com/alexphi/jekyll-tailwind-template" class="underline hover:text-gray-300">GitHub</a></p>
+<div class="bg-gray-700 md:flex md:flex-row md:items-center md:justify-center md:h-screen">
+    <div class="max-w-lg p-8 md:order-last">
+        <h1 class="mt-8 text-4xl text-gray-300">Random inspiration</h1>
+        <p class="mb-8 text-2xl text-gray-300">from Jekyll + Netlify functions</p>
+        <div x-data="quote()" x-init="fetchQuote()">
+            <template x-if="isLoaded()">
+                <template x-if="success">
+                    <p class="py-2 pl-4 my-2 text-gray-300 border-l-2 border-gray-300 font-display" x-text="quote">
+                    </p>
+                    <span class="text-xs">
+                        <img src="https://theysaidso.com/branding/theysaidso.png" alt="theysaidso.com"
+                            class="inline w-4 h-4" />
+                        <a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com"
+                            class="inline text-white">
+                            They Said So ®
+                        </a>
+                    </span>
+                </template>
+                <template x-if="!success">
+                    <p class="py-2 my-2 text-sm text-gray-300 text-red-300 font-display" x-text="quote">
+                    </p>
+                </template>
+            </template>
+            <template x-if="!isLoaded()">
+                <p class="py-2 my-2 text-sm text-gray-300">
+                    ...
+                </p>
+            </template>
+        </div>
+
+    </div>
+    <div class="p-8">
+        <img src="/assets/landscape.svg" alt="landscape">
+    </div>
 </div>
+
+<script>
+    function quote() {
+        return {
+            quote: '',
+            author: '',
+            success: false,
+            isLoaded() {
+                return this.quote !== ''
+            },
+            fetchQuote() {
+                const url = "/.netlify/functions/quote";
+
+                fetch(url)
+                    .then(response => response.json())
+                    .then(data => {
+                        this.success = data.success;
+                        this.quote = this.success ? `${data.quote.text} - ${data.quote.author}` : data.error
+
+                        console.log('Loaded quote. Success: ' + this.success)
+                    });
+            }
+        }
+    }
+</script>

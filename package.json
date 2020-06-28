@@ -6,6 +6,12 @@
     "postcss-cli": "^7.1.0",
     "tailwindcss": "^1.1.4"
   },
+  "devDependencies": {
+    "netlify-cli": "^2.54.0"
+  },
+  "scripts": {
+    "start": "netlify dev"
+  },
   "keywords": [],
   "author": {
     "email": "alexphi@gmail.com",

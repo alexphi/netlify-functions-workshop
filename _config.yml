@@ -18,15 +18,12 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: "Jekyll + TailwindCSS template"
-email: your-email@example.com
+title: "Netlify Functions workshop"
+email: alexphi@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  A minimal template to create a static site using Jekyll and TailwindCSS.
+  Minimal site generated with Jekyll and using Netlify functions
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
-# Google Analytics TrackingID - Leave blank to exclude the gtag scripts
-gtag_id: ""
 
 # Build settings
 plugins:
@@ -49,6 +46,7 @@ exclude:
   - postcss.config.js
   - tailwind.config.js
   - netlify.toml
+  - functions/
   - node_modules
   - vendor/bundle/
   - vendor/cache/

@@ -1,5 +1,6 @@
 [build]
   command = "npm install && jekyll build"
+  functions = "functions"
   publish = "_site/"
 
 [context.production]
