@@ -1,8 +1,8 @@
 module.exports = {
   theme: {
     fontFamily: {
-      display: ['Yeseva One', 'serif'],
-      body: ['Merriweather Sans', 'sans-serif'],
+      display: ['Abril Fatface', 'cursive'],
+      body: ['Josefin Sans', 'sans-serif'],
     },
     extend: {}
   },
