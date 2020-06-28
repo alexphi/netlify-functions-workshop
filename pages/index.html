@@ -6,8 +6,8 @@ permalink: "/"
 <div class="bg-gray-700">
     <div class="container mx-auto md:flex md:flex-row md:items-center md:justify-center md:h-screen">
         <div class="p-8 md:w-1/2 md:max-w-lg md:order-last">
-            <h1 class="mt-8 text-4xl leading-tight tracking-wide text-gray-300 font-display">Random inspiration</h1>
-            <p class="mb-8 text-2xl leading-tight tracking-wide text-gray-300 font-display">from Jekyll + Netlify functions</p>
+            <h1 class="mt-8 text-5xl leading-tight tracking-wide text-gray-300 font-display">Convoluted Quoter</h1>
+            <p class="mb-8 text-2xl leading-tight tracking-wide text-gray-300 font-display">Quote of the day using Jekyll and Netlify functions</p>
             <div x-data="quote()" x-init="fetchQuote()">
                 <template x-if="isLoaded()">
                     <template x-if="success">
@@ -24,7 +24,7 @@ permalink: "/"
                         </span>
                     </template>
                     <template x-if="!success">
-                        <p class="py-2 my-2 text-sm text-gray-300 text-red-300" x-text="quote">
+                        <p class="py-2 my-2 text-sm text-red-300" x-text="quote">
                         </p>
                     </template>
                 </template>
@@ -36,7 +36,7 @@ permalink: "/"
             </div>
 
         </div>
-        <div class="p-8 md:w-1/2 md:max-w-sm">
+        <div class="p-8 text-center md:w-1/2 md:max-w-sm">
             <img src="/assets/landscape.svg" alt="landscape">
         </div>
     </div>
