@@ -3,39 +3,42 @@ layout: default
 permalink: "/"
 ---
 
-<div class="bg-gray-700 md:flex md:flex-row md:items-center md:justify-center md:h-screen">
-    <div class="max-w-lg p-8 md:order-last">
-        <h1 class="mt-8 text-4xl text-gray-300">Random inspiration</h1>
-        <p class="mb-8 text-2xl text-gray-300">from Jekyll + Netlify functions</p>
-        <div x-data="quote()" x-init="fetchQuote()">
-            <template x-if="isLoaded()">
-                <template x-if="success">
-                    <p class="py-2 pl-4 my-2 text-gray-300 border-l-2 border-gray-300 font-display" x-text="quote">
-                    </p>
-                    <span class="text-xs">
-                        <img src="https://theysaidso.com/branding/theysaidso.png" alt="theysaidso.com"
-                            class="inline w-4 h-4" />
-                        <a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com"
-                            class="inline text-white">
-                            They Said So ®
-                        </a>
-                    </span>
+<div class="bg-gray-700">
+    <div class="container mx-auto md:flex md:flex-row md:items-center md:justify-center md:h-screen">
+        <div class="w-1/2 max-w-lg p-8 md:order-last">
+            <h1 class="mt-8 text-4xl leading-none text-gray-300 font-display">Random inspiration</h1>
+            <p class="mb-8 text-2xl leading-tight text-gray-300 font-display">from Jekyll + Netlify functions</p>
+            <div x-data="quote()" x-init="fetchQuote()">
+                <template x-if="isLoaded()">
+                    <template x-if="success">
+                        <p class="py-2 pl-4 my-2 text-orange-300 border-l-4 border-orange-300" x-text="quote">
+                        </p>
+                        <span class="text-xs text-gray-300">
+                            Quote from
+                            <img src="https://theysaidso.com/branding/theysaidso.png" alt="theysaidso.com"
+                                class="inline w-4 h-4" />
+                            <a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com"
+                                class="inline text-gray-300">
+                                They Said So®
+                            </a>
+                        </span>
+                    </template>
+                    <template x-if="!success">
+                        <p class="py-2 my-2 text-sm text-gray-300 text-red-300" x-text="quote">
+                        </p>
+                    </template>
                 </template>
-                <template x-if="!success">
-                    <p class="py-2 my-2 text-sm text-gray-300 text-red-300 font-display" x-text="quote">
+                <template x-if="!isLoaded()">
+                    <p class="py-2 my-2 text-sm text-gray-300">
+                        ...
                     </p>
                 </template>
-            </template>
-            <template x-if="!isLoaded()">
-                <p class="py-2 my-2 text-sm text-gray-300">
-                    ...
-                </p>
-            </template>
-        </div>
+            </div>
 
-    </div>
-    <div class="p-8">
-        <img src="/assets/landscape.svg" alt="landscape">
+        </div>
+        <div class="w-1/2 max-w-sm p-8">
+            <img src="/assets/landscape.svg" alt="landscape">
+        </div>
     </div>
 </div>
 
