@@ -1,16 +1,18 @@
 <div x-data="quote()" x-init="fetchQuote()">
-    <template x-if="isLoaded()">
+    <template x-if="!loading">
         <template x-if="success">
-            <a :href="link" target="_blank"
-                class="inline-block py-2 pl-4 my-2 text-orange-300 border-l-4 border-orange-300" x-text="quote">
+            <a :href="quote.link" target="_blank"
+                class="inline-block py-2 pl-4 my-2 text-orange-300 border-l-4 border-orange-300">
+                <p x-text="quote.text"></p>
+                <p x-text="quote.author"></p>
             </a>
         </template>
         <template x-if="!success">
-            <p class="py-2 my-2 text-sm text-red-300" x-text="quote">
+            <p class="py-2 my-2 text-sm text-red-300" x-text="errorMessage">
             </p>
         </template>
     </template>
-    <template x-if="!isLoaded()">
+    <template x-if="loading">
         <p class="py-2 my-2 text-sm text-gray-300">
             Loading quote of the day...
         </p>
@@ -20,22 +22,28 @@
 <script>
     const quote = () => {
         return {
-            quote: '',
-            author: '',
-            link: '',
-            success: false,
-            isLoaded() {
-                return this.quote !== ''
+            quote: {
+                text: '',
+                author: '',
+                link: '',
             },
+            errorMessage: '',
+            loading: true,
+            success: false,
+
             fetchQuote() {
                 const url = "/.netlify/functions/quote";
 
                 fetch(url)
                     .then(response => response.json())
                     .then(data => {
-                        this.success = data.success;
-                        this.quote = this.success ? `${data.quote.text} - ${data.quote.author}` : data.error
-                        this.link = this.success ? data.quote.link : ''
+                        this.loading = false
+                        this.success = data.success
+
+                        if (this.success)
+                            this.quote = data.quote
+                        else
+                            this.errorMessage = data.error
 
                         console.log('Loaded quote. Success: ' + this.success)
                     });
