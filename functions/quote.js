@@ -8,7 +8,8 @@ const buildOkResponse = (quote) => {
       success: true,
       quote: {
         text: quote.quote,
-        author: quote.author
+        author: quote.author,
+        link: quote.permalink
       }
     })
   }

@@ -1,6 +1,6 @@
 # Netlify Functions Workshop
 
-This is a simple static website generated with Jekyll and deployed to Netlify, which use a serverless function to fetch some dyamic content.
+This is a simple static website generated with Jekyll and deployed to Netlify, which uses a serverless function to fetch some dynamic content.
 
 It's intended to show basic concepts around the JAMStack on Netlify, such as Static Site Generators, git-based deployment and Netlify functions as APIs.
 

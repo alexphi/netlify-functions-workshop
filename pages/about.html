@@ -1,6 +1,6 @@
 ---
 layout: default
-permalink: "/"
+permalink: "/about"
 ---
 
 <div class="bg-gray-700">
@@ -9,33 +9,34 @@ permalink: "/"
             <h1 class="mt-8 text-5xl leading-none tracking-wide text-gray-300 font-display">Convoluted Quoter</h1>
             <p class="mt-4 mb-8 text-2xl leading-normal tracking-wide text-gray-300 font-display">Quote of the day using
                 Jekyll and Netlify functions</p>
-            <div x-data="quote()" x-init="fetchQuote()">
-                <template x-if="isLoaded()">
-                    <template x-if="success">
-                        <a :href="link" target="_blank" class="py-2 pl-4 my-2 text-orange-300 border-l-4 border-orange-300" x-text="quote">
-                        </a>
-                    </template>
-                    <template x-if="!success">
-                        <p class="py-2 my-2 text-sm text-red-300" x-text="quote">
-                        </p>
-                    </template>
-                </template>
-                <template x-if="!isLoaded()">
-                    <p class="py-2 my-2 text-sm text-gray-300">
-                        Loading quote of the day...
-                    </p>
-                </template>
-            </div>
-            <p class="my-8">
-                <a href="/about" title="About" class="text-gray-300">
-                    About this site
-                    <svg class="inline w-4 h-4" fill="none" stroke-linecap="round" stroke-linejoin="round"
+            <p class="my-4 text-gray-300">
+                This is a simple static website generated with Jekyll and deployed to Netlify, which uses a serverless
+                function to fetch dynamic content from an external API.
+            </p>
+            <p class="my-4 text-gray-300">
+                It's intended to show basic concepts around the JAMStack on Netlify, such as Static Site Generators,
+                git-based deployment and Netlify functions as APIs.
+            </p>
+            <p class="my-4 text-gray-300">
+                Quotes pulled from
+                <img src="https://theysaidso.com/branding/theysaidso.png" alt="theysaidso.com" class="inline w-4 h-4" />
+                <a href="https://theysaidso.com" title="Powered by quotes from theysaidso.com"
+                    class="inline text-yellow-300">
+                    They Said So®
+                </a>
+            </p>
+            <p class="my-4">
+                <a href="https://github.com/alexphi/netlify-functions-workshop" title="Github"
+                class="text-yellow-300">Github repo</a>
+            </p>
+            <p class="my-4">
+                <a href="/" title="Home" class="text-gray-300">
+                    <svg class="inline w-5 h-5" fill="none" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M9 5l7 7-7 7"></path>
+                        <path d="M15 19l-7-7 7-7"></path>
                     </svg>
                 </a>
             </p>
-
         </div>
         <div class="p-8 md:w-1/2 md:max-w-sm">
             <img src="/assets/landscape.svg" alt="landscape">
@@ -44,11 +45,10 @@ permalink: "/"
 </div>
 
 <script>
-    const quote = () => {
+    function quote() {
         return {
             quote: '',
             author: '',
-            link: '',
             success: false,
             isLoaded() {
                 return this.quote !== ''
@@ -61,7 +61,6 @@ permalink: "/"
                     .then(data => {
                         this.success = data.success;
                         this.quote = this.success ? `${data.quote.text} - ${data.quote.author}` : data.error
-                        this.link = this.success ? data.quote.link : ''
 
                         console.log('Loaded quote. Success: ' + this.success)
                     });
