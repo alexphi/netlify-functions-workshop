@@ -3,69 +3,18 @@ layout: default
 permalink: "/"
 ---
 
-<div class="bg-gray-700">
-    <div class="container mx-auto md:flex md:flex-row md:items-center md:justify-center md:h-screen">
-        <div class="p-8 md:w-1/2 md:max-w-lg md:order-last">
-            <h1 class="mt-8 text-5xl leading-none tracking-wide text-gray-300 font-display">Convoluted Quoter</h1>
-            <p class="mt-4 mb-8 text-2xl leading-normal tracking-wide text-gray-300 font-display">Quote of the day using
-                Jekyll and Netlify functions</p>
-            <div x-data="quote()" x-init="fetchQuote()">
-                <template x-if="isLoaded()">
-                    <template x-if="success">
-                        <a :href="link" target="_blank" class="py-2 pl-4 my-2 text-orange-300 border-l-4 border-orange-300" x-text="quote">
-                        </a>
-                    </template>
-                    <template x-if="!success">
-                        <p class="py-2 my-2 text-sm text-red-300" x-text="quote">
-                        </p>
-                    </template>
-                </template>
-                <template x-if="!isLoaded()">
-                    <p class="py-2 my-2 text-sm text-gray-300">
-                        Loading quote of the day...
-                    </p>
-                </template>
-            </div>
-            <p class="my-8">
-                <a href="/about" title="About" class="text-gray-300">
-                    About this site
-                    <svg class="inline w-4 h-4" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                        <path d="M9 5l7 7-7 7"></path>
-                    </svg>
-                </a>
-            </p>
+<h1 class="mt-8 text-5xl leading-none tracking-wide text-gray-300 font-display">Convoluted Quoter</h1>
+<p class="mt-4 mb-8 text-2xl leading-normal tracking-wide text-gray-300 font-display">Quote of the day using
+    Jekyll and Netlify functions</p>
 
-        </div>
-        <div class="p-8 md:w-1/2 md:max-w-sm">
-            <img src="/assets/landscape.svg" alt="landscape">
-        </div>
-    </div>
-</div>
+{% include components/quote.html %}
 
-<script>
-    const quote = () => {
-        return {
-            quote: '',
-            author: '',
-            link: '',
-            success: false,
-            isLoaded() {
-                return this.quote !== ''
-            },
-            fetchQuote() {
-                const url = "/.netlify/functions/quote";
-
-                fetch(url)
-                    .then(response => response.json())
-                    .then(data => {
-                        this.success = data.success;
-                        this.quote = this.success ? `${data.quote.text} - ${data.quote.author}` : data.error
-                        this.link = this.success ? data.quote.link : ''
-
-                        console.log('Loaded quote. Success: ' + this.success)
-                    });
-            }
-        }
-    }
-</script>
+<p class="my-8">
+    <a href="/about" title="About" class="text-gray-300">
+        About this site
+        <svg class="inline w-4 h-4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path d="M9 5l7 7-7 7"></path>
+        </svg>
+    </a>
+</p>

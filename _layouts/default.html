@@ -9,13 +9,22 @@
 
   <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/main.css">
   <meta name="theme-color" content="#ffffff">
-  
+
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 </head>
 
 <body>
-  {{ content }}
+  <div class="bg-gray-700">
+    <div class="container mx-auto md:flex md:flex-row md:items-center md:justify-center md:h-screen">
+      <div class="p-8 md:w-1/2 md:max-w-lg md:order-last">
+        {{ content }}
+      </div>
+      <div class="p-8 md:w-1/2 md:max-w-sm">
+        <img src="/assets/splash.svg" alt="landscape">
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>
