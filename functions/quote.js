@@ -26,19 +26,30 @@ const buildErrorResponse = (message) => {
 }
 
 exports.handler = (event, context, callback) => {
-  http.get(url, res => {
-    res.setEncoding("utf8")
-    let body = ""
-    res.on("data", data => {
-      body += data
-    })
-    res.on("end", () => {
-      body = JSON.parse(body)
 
-      if (body.success)
-        callback(null, buildOkResponse(body.contents.quotes[0]))
-      else
-        callback(null, buildErrorResponse(body.error.message))
+  if (process.env.CONTEXT === 'development') {
+    // return dummy quote for dev
+    callback(null, buildOkResponse({
+      quote: 'In Production environment real data will this quote have',
+      author: 'Master Yoda',
+      permalink: '#'
+    }))
+  } else {
+
+    http.get(url, res => {
+      res.setEncoding("utf8")
+      let body = ""
+      res.on("data", data => {
+        body += data
+      })
+      res.on("end", () => {
+        body = JSON.parse(body)
+
+        if (body.success)
+          callback(null, buildOkResponse(body.contents.quotes[0]))
+        else
+          callback(null, buildErrorResponse(body.error.message))
+      })
     })
-  })
+  }
 }

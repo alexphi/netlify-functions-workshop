@@ -4,7 +4,7 @@
             <a :href="quote.link" target="_blank"
                 class="inline-block py-2 pl-4 my-2 text-orange-300 border-l-4 border-orange-300">
                 <p x-text="quote.text"></p>
-                <p x-text="quote.author"></p>
+                <p>&mdash; <span  x-text="quote.author"></span></p>
             </a>
         </template>
         <template x-if="!success">
